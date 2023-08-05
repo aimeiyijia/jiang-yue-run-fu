@@ -1,11 +1,11 @@
 <template>
-  <view class="circle tn-safe-area-inset-bottom">
+  <view class="template-circle tn-safe-area-inset-bottom">
 
     <!-- 顶部自定义导航 -->
-    <tn-nav-bar :isBack="false" :bottomShadow="false" backgroundColor="#FFFFFF">
+    <tn-nav-bar :isBack="false" :bottomShadow="false" backgroundColor="none">
       <view class="custom-nav tn-flex tn-flex-col-center tn-flex-row-left">
         <!-- 个人圈子，默认显示自己头像，当有消息互动的时候，显示别人的头像，并且有一个红点点 -->
-        <view class="custom-nav__back" @click="tn('')">
+        <view class="custom-nav__back" @click="tn('/circlePages/blogger')">
           <view class="logo-pic tn-shadow-blur" style="background-image:url('https://tnuiimage.tnkjapp.com/blogger/avatar_2.jpeg')">
             <view class="logo-image">
               <tn-badge backgroundColor="#E72F8C" :dot="true" :radius="16" :absolute="true" :translateCenter="false"></tn-badge>
@@ -24,8 +24,8 @@
     <!-- 发现 -->
     <view class="" v-if="current==0">
       
-      <view class="tn-margin-top-sm" :style="{paddingTop: vuex_custom_bar_height + 'px'}" @click="tn('')">
-        <view class="tn-flex tn-flex-row-between tn-round tn-padding-xs tn-margin" style="border: 1rpx solid #D6D1F0;background: linear-gradient(-160deg, #F1F7FF, #DEE6FF, #F3F8FF, #D0DBFF);">
+      <view class="tn-margin-top-sm" :style="{paddingTop: vuex_custom_bar_height + 'px'}" @click="tn('/circlePages/ranking')">
+        <view class="tn-flex tn-flex-row-between tn-bg-yellow  tn-round tn-padding-xs tn-margin">
           <view class="justify-content-item tn-text-center tn-flex" style="padding: 25rpx 30rpx">
             <tn-avatar-group :lists="latestUserAvatar" size="sm"></tn-avatar-group> 
             <text class="tn-padding-xs">1629 人</text>
@@ -48,7 +48,7 @@
         <view class="justify-content-item tn-margin tn-text-bold tn-text-xl">
         精选圈子
         </view>
-        <view class="justify-content-item tn-margin tn-text-lg tn-color-cat">
+        <view class="justify-content-item tn-margin tn-text-lg tn-color-grey">
           <text class="tn-padding-xs">全部</text>
           <text class="tn-icon-topics"></text>
         </view>
@@ -58,7 +58,7 @@
         <!-- 方式16 start-->
         <view class="tn-flex tn-flex-wrap tn-margin-bottom">
           <block v-for="(item, index) in bloggerList" :key="index">
-            <view class="" style="width: 33.3%;" @click="tn('')">
+            <view class="" style="width: 33.3%;" @click="tn('/circlePages/group')">
               <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center ">
                 <view class="tn-radius tn-padding-sm">
                   <view class="image-pic" :style="'background-image:url('+ item.url +')'">
@@ -81,7 +81,7 @@
         <block v-for="(item,index) in content">
           <view class="blogger__item" :key="index">
             <view class="blogger__author tn-flex tn-flex-row-between tn-flex-col-center">
-              <view class="justify__author__info" @click="tn('')">
+              <view class="justify__author__info" @click="tn('/circlePages/blogger_other')">
                 <view class="tn-flex tn-flex-row-center">
                   <view class="tn-flex tn-flex-row-center tn-flex-col-center">
                     <view class="">
@@ -105,9 +105,9 @@
               </view>
             </view>
            
-            <view class="blogger__desc tn-margin-top-sm tn-margin-bottom-sm tn-text-justify tn-flex-col-center tn-flex-row-left" @click="tn('')">
-              <view v-for="(label_item,label_index) in item.label" :key="label_index" class="blogger__desc__label tn-float-left tn-margin-right">
-                <text class="blogger__desc__label--prefix tn-icon-topics-fill"></text> 
+            <view class="blogger__desc tn-margin-top-sm tn-margin-bottom-sm tn-text-justify tn-flex-col-center tn-flex-row-left" @click="tn('/circlePages/details')">
+              <view v-for="(label_item,label_index) in item.label" :key="label_index" class="blogger__desc__label tn-float-left tn-margin-right tn-bg-gray--light tn-round tn-text-sm tn-text-bold">
+                <text class="blogger__desc__label--prefix">#</text> 
                 <text class="tn-text-df">{{ label_item }}</text>
               </view>
               <!-- 不用限制长度了，因为发布的时候限制长度了-->
@@ -127,7 +127,7 @@
             </view> -->
             
             <block v-if="item.mainImage">
-              <view v-if="[1,2,4].indexOf(item.mainImage.length) != -1" class="tn-padding-top-xs" @click="tn('')">
+              <view v-if="[1,2,4].indexOf(item.mainImage.length) != -1" class="tn-padding-top-xs" @click="tn('/circlePages/details')">
                 <image v-for="(image_item,image_index) in item.mainImage" :key="image_index" 
                   class="blogger__main-image"
                   :class="{
@@ -138,7 +138,7 @@
                   mode="aspectFill"
                 ></image>
               </view>
-              <view v-else class="tn-padding-top-xs" @click="tn('')">
+              <view v-else class="tn-padding-top-xs" @click="tn('/circlePages/details')">
                 <tn-grid  hoverClass="none" :col="3">
                   <block v-for="(image_item,image_index) in item.mainImage" :key="image_index">
                     <!-- #ifndef MP-WEIXIN -->
@@ -167,7 +167,7 @@
             <view class="tn-flex tn-flex-row-between tn-flex-col-center tn-margin-top-xs">
               <view class="justify-content-item tn-color-gray tn-text-center">
                 <view class="">
-                  <text class="blogger__count-icon tn-icon-flower"></text> 
+                  <text class="blogger__count-icon tn-icon-footprint"></text> 
                   <text class="tn-padding-right">{{ item.collectionCount }}</text>
                   <text class="blogger__count-icon tn-icon-message"></text>
                   <text class="tn-padding-right">{{ item.commentCount }}</text>
@@ -192,7 +192,7 @@
         <view class="tn-strip-bottom"></view>
         
         <!-- 广告 -->
-        <view class="blogger__item" @click="tn('')">
+        <view class="blogger__item" @click="tn('/circlePages/advertise')">
           <view class="tn-flex tn-flex-row-between tn-flex-col-center tn-margin-bottom">
             <view class="justify-content-item">
               <view class="tn-flex tn-flex-col-center tn-flex-row-left">
@@ -220,7 +220,7 @@
         <block v-for="(item,index) in content" :key="index">
           <view class="blogger__item">
             <view class="blogger__author tn-flex tn-flex-row-between tn-flex-col-center">
-              <view class="justify__author__info" @click="tn('')">
+              <view class="justify__author__info" @click="tn('/circlePages/blogger_other')">
                 <view class="tn-flex tn-flex-row-center">
                   <view class="tn-flex tn-flex-row-center tn-flex-col-center">
                     <view class="">
@@ -243,9 +243,9 @@
               </view>
             </view>
            
-            <view class="blogger__desc tn-margin-top-sm tn-margin-bottom-sm tn-text-justify tn-flex-col-center tn-flex-row-left" @click="tn('')">
-              <view v-for="(label_item,label_index) in item.label" :key="label_index" class="blogger__desc__label tn-float-left tn-margin-right">
-                <text class="blogger__desc__label--prefix tn-icon-topics-fill"></text> 
+            <view class="blogger__desc tn-margin-top-sm tn-margin-bottom-sm tn-text-justify tn-flex-col-center tn-flex-row-left" @click="tn('/circlePages/details')">
+              <view v-for="(label_item,label_index) in item.label" :key="label_index" class="blogger__desc__label tn-float-left tn-margin-right tn-bg-gray--light tn-round tn-text-sm tn-text-bold">
+                <text class="blogger__desc__label--prefix">#</text> 
                 <text class="tn-text-df">{{ label_item }}</text>
               </view>
               <!-- 不用限制长度了，因为发布的时候限制长度了-->
@@ -265,7 +265,7 @@
             </view> -->
             
             <block v-if="item.mainImage">
-              <view v-if="[1,2,4].indexOf(item.mainImage.length) != -1" class="tn-padding-top-xs" @click="tn('')">
+              <view v-if="[1,2,4].indexOf(item.mainImage.length) != -1" class="tn-padding-top-xs" @click="tn('/circlePages/details')">
                 <image v-for="(image_item,image_index) in item.mainImage" :key="image_index" 
                   class="blogger__main-image"
                   :class="{
@@ -276,7 +276,7 @@
                   mode="aspectFill"
                 ></image>
               </view>
-              <view v-else class="tn-padding-top-xs" @click="tn('')">
+              <view v-else class="tn-padding-top-xs" @click="tn('/circlePages/details')">
                 <tn-grid  hoverClass="none" :col="3">
                   <block v-for="(image_item,image_index) in item.mainImage" :key="image_index">
                     <!-- #ifndef MP-WEIXIN -->
@@ -305,7 +305,7 @@
             <view class="tn-flex tn-flex-row-between tn-flex-col-center tn-margin-top-xs">
               <view class="justify-content-item tn-color-gray tn-text-center">
                 <view class="">
-                  <text class="blogger__count-icon tn-icon-flower"></text> 
+                  <text class="blogger__count-icon tn-icon-footprint"></text> 
                   <text class="tn-padding-right">{{ item.collectionCount }}</text>
                   <text class="blogger__count-icon tn-icon-message"></text>
                   <text class="tn-padding-right">{{ item.commentCount }}</text>
@@ -363,7 +363,7 @@
     <view class="" v-if="current==2">
       <view class="tn-margin-bottom-lg" :style="{paddingTop: vuex_custom_bar_height + 'px'}">
         <block v-for="(item, index) in reserve" :key="index">
-          <view class="article-shadow tn-margin" @click="tn('')">
+          <view class="article-shadow tn-margin" @click="tn('/circlePages/reserve')">
             <view class="tn-flex">
               <view class="image-pic tn-margin-sm" :style="'background-image:url(' + item.userAvatar + ')'">
                 <view class="image-article">
@@ -386,7 +386,7 @@
                 </view>
                 <view class="tn-flex tn-flex-row-between tn-flex-col-between">
                   <view v-for="(label_item,label_index) in item.label" :key="label_index"
-                    class="justify-content-item tn-tag-content__item tn-margin-right tn-text-sm tn-text-bold">
+                    class="justify-content-item tn-tag-content__item tn-margin-right tn-round tn-text-sm tn-text-bold" :class="[`tn-bg-${item.color}--light tn-color-${item.color}`]">
                     <text class="tn-tag-content__item--prefix">#</text> {{ label_item }}
                   </view>
                   <view class="justify-content-item tn-color-gray tn-text-center tn-color-gray--disabled" style="padding-top: 5rpx;">
@@ -411,7 +411,7 @@
       <view class="tn-flex" style="margin-bottom: 100rpx;padding-top: 46vh;">
         <view class="tn-flex-1 tn-margin-sm tn-radius" @click="navEdit">
           <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
-            <view class="icon9__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-shadow-blur tn-bg-cat tn-color-white">
+            <view class="icon9__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-shadow-blur tn-bg-red tn-color-white">
               <view class="tn-icon-camera-fill"></view>
             </view>  
             <view class="tn-color-white tn-text-sm tn-text-center">
@@ -421,7 +421,7 @@
         </view>
         <view class="tn-flex-1 tn-margin-sm tn-radius" @click="navCreate">
           <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
-            <view class="icon9__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-shadow-blur tn-bg-cat tn-color-white">
+            <view class="icon9__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-shadow-blur tn-bg-cyan tn-color-white">
               <view class="tn-icon-flag-fill"></view>
             </view>  
             <view class="tn-color-white tn-text-sm tn-text-center">
@@ -431,7 +431,7 @@
         </view>
         <view class="tn-flex-1 tn-margin-sm tn-radius" @click="navBuild">
           <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
-            <view class="icon9__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-shadow-blur tn-bg-cat tn-color-white">
+            <view class="icon9__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-shadow-blur tn-bg-blue tn-color-white">
               <view class="tn-icon-topics-fill"></view>
             </view>  
             <view class="tn-color-white tn-text-sm tn-text-center">
@@ -479,7 +479,7 @@
 
 <script>
   export default {
-    name: 'Circle',
+    name: 'CirclePage',
     data(){
       return {
           cardCur: 0,
@@ -510,9 +510,9 @@
           }],
           current: 0,
           scrollList: [
-            {name: '动态'},
-            {name: '商圈'},
-            {name: '活动'}
+            {name: '发现'},
+            {name: '视频'},
+            {name: '世界', count: ''}
           ],
           latestUserAvatar: [
             {src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'},
@@ -525,45 +525,45 @@
             type: 'image',
             name: 'UI设计',
             text: '629人关注',
-            url: 'https://tnuiimage.tnkjapp.com/simple/image2.jpg',
+            url: 'https://tnuiimage.tnkjapp.com/blogger/blogger_beibei.jpg',
           }, {
             id: 1,
             type: 'image',
             name: '前端开发',
             text: '688人关注',
-            url: 'https://tnuiimage.tnkjapp.com/simple/image3.jpg',
+            url: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg',
           }, {
             id: 2,
             type: 'image',
             name: '校园生活',
             text: '552人关注',
-            url: 'https://tnuiimage.tnkjapp.com/simple/image0.jpg',
+            url: 'https://tnuiimage.tnkjapp.com/blogger/avatar_4.jpeg',
           }, {
             id: 3,
             type: 'image',
             name: '户外摄影',
             text: '105人关注',
-            url: 'https://tnuiimage.tnkjapp.com/simple/banner2.jpg',
+            url: 'https://tnuiimage.tnkjapp.com/blogger/avatar_2.jpeg',
           }, {
             id: 4,
             type: 'image',
             name: '电影点评',
             text: '387人关注',
-            url: 'https://tnuiimage.tnkjapp.com/simple/banner3.jpg',
+            url: 'https://tnuiimage.tnkjapp.com/blogger/avatar_3.jpeg',
           }, {
             id: 5,
             type: 'image',
             name: '热血动漫',
             text: '643人关注',
-            url: 'https://tnuiimage.tnkjapp.com/simple/image5.jpg',
+            url: 'https://tnuiimage.tnkjapp.com/blogger/content_1.jpeg',
           }],
           // 内容默认隐藏显示的高度
           contentHideShowHeight: 0,
           content: [
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image1.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_4.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               label: ['开源','创意','UI框架'],
               desc: '开源可商用组件，助你开发酷炫UI一臂之力',
               content: '基础常用的布局元素，酷炫完善的配色体系，统一可增的图标 icon ，简便调用的功能组件，酷炫的前端页面，吖，编不下去了',
@@ -581,14 +581,14 @@
               likeCount: 83
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/yuan1.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               label: ['开源','创意','UI框架'],
               desc: '开源可商用组件，助你开发酷炫UI一臂之力',
               content: '基础常用的布局元素，酷炫完善的配色体系，统一可增的图标 icon ，简便调用的功能组件，酷炫的前端页面，吖，编不下去了',
               mainImage:[
-                'https://tnuiimage.tnkjapp.com/simple/banner2.jpg'
+                'https://tnuiimage.tnkjapp.com/blogger/content_1.jpeg'
               ],
               viewUser: {
                 latestUserAvatar: [
@@ -604,15 +604,15 @@
               likeCount: 83
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image8.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_2.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               label: [],
               desc: '',
               content: '',
               mainImage:[
-                'https://tnuiimage.tnkjapp.com/simple/image6.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/image7.jpg',
+                'https://tnuiimage.tnkjapp.com/shop/computer2.jpg',
+                'https://tnuiimage.tnkjapp.com/shop/prototype2.jpg',
               ],
               viewUser: {
                 latestUserAvatar: [
@@ -628,16 +628,16 @@
               likeCount: 84
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image9.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_3.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               label: ['开源','创意'],
               desc: '开源可商用组件',
               content: '基础常用的布局元素，酷炫完善的配色体系，统一可增的图标 icon ，简便调用的功能组件，酷炫的前端页面，吖，编不下去了 基础常用的布局元素，酷炫完善的配色体系，统一可增的图标 icon ，简便调用的功能组件，酷炫的前端页面，吖，编不下去了',
               mainImage:[
-                'https://tnuiimage.tnkjapp.com/simple/image4.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/banner2.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/banner3.jpg',
+                'https://tnuiimage.tnkjapp.com/swiper/swiper2.jpg',
+                'https://tnuiimage.tnkjapp.com/swiper/swiper3.jpg',
+                'https://tnuiimage.tnkjapp.com/swiper/swiper4.jpg',
               ],
               viewUser: {
                 latestUserAvatar: [
@@ -653,16 +653,16 @@
               likeCount: 82
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image2.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/blogger_beibei.jpg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               label: ['开源','链接'],
               desc: 'https://www.yuque.com/tuniao',
               mainImage:[
-                'https://tnuiimage.tnkjapp.com/simple/image0.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/logo-flower.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/banner0.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/image3.jpg',
+                'https://tnuiimage.tnkjapp.com/shop/watch1.jpg',
+                'https://tnuiimage.tnkjapp.com/shop/watch2.jpg',
+                'https://tnuiimage.tnkjapp.com/shop/pillow2.jpg',
+                'https://tnuiimage.tnkjapp.com/shop/pillow.jpg',
               ],
               viewUser: {
                 latestUserAvatar: [
@@ -678,17 +678,17 @@
               likeCount: 12
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image4.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/content_1.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               label: ['开源','创意'],
               desc: '开源可商用组件',
               mainImage:[
-                'https://tnuiimage.tnkjapp.com/simple/banner1.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/banner3.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/image4.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/image6.jpg',
-                'https://tnuiimage.tnkjapp.com/simple/image7.jpg',
+                'https://tnuiimage.tnkjapp.com/blogger/y11.jpg',
+                'https://tnuiimage.tnkjapp.com/blogger/y33.jpg',
+                'https://tnuiimage.tnkjapp.com/blogger/y22.jpg',
+                'https://tnuiimage.tnkjapp.com/blogger/y44.jpg',
+                'https://tnuiimage.tnkjapp.com/blogger/y55.jpg',
               ],
               viewUser: {
                 latestUserAvatar: [
@@ -705,14 +705,14 @@
             }
           ],
           reserve: [{
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image5.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_4.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'red',
               label: ['新年祝福'],
               title: '2023年祝福接力',
               desc: '祝福接力活动：预约接龙的用户，将收到祝福通知',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/image0.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/prototype2.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -734,14 +734,14 @@
               likeCount: 206
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image8.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/blogger_beibei.jpg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'cyan',
               label: ['时光信件'],
               title: '寄给十年后自己',
               desc: '时光邮局：预约接龙的用户，十年后，将收到一份来着十年前发出的信件',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/image1.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/prototype1.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -763,14 +763,14 @@
               likeCount: 65
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image4.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_2.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'blue',
               label: ['纪念日'],
               title: '常常忘记纪念日？',
               desc: '纪念日提醒：预约接龙的用户，微信上将收到纪念日提醒通知',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/image3.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/computer2.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -792,14 +792,14 @@
               likeCount: 543
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image5.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_3.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'green',
               label: ['团购接龙'],
               title: '冰箱空空如也？一起团购屯菜吖',
               desc: '团购活动：预约接龙的用户，将参与一起来买菜',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/image8.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/phonecase1.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -821,14 +821,14 @@
               likeCount: 342
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/yuan1.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/shop/phonecase2.jpg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'orange',
               label: ['回母校'],
               title: '常回家看看',
               desc: '线下活动：预约接龙的用户，将表示参与了活动当天回母校',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/image2.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/phonecase2.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -850,14 +850,14 @@
               likeCount: 91
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image3.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/shop/watch1.jpg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'purplered',
               label: ['婚礼'],
               title: '我们结婚啦',
               desc: '婚礼请帖：欢迎来参加我们的婚礼宴席，不用随礼',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/banner3.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/watch1.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -879,14 +879,14 @@
               likeCount: 86
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/banner2.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/shop/sticker.jpg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'purple',
               label: ['大扫除'],
               title: '组队参加大扫除公益活动',
               desc: '活动组队：预约接龙的学生，将表示参与了当天的大扫除活动',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/image8.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/sticker.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -908,14 +908,14 @@
               likeCount: 76
             },
             {
-              userAvatar: 'https://tnuiimage.tnkjapp.com/simple/image0.jpg',
+              userAvatar: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg',
               userName: '爱魅小凡',
-              date: '2022年9月20日',
+              date: '2022年5月20日',
               color: 'brown',
               label: ['新疆出游'],
               title: '一起组队去新疆看西西',
               desc: '旅游出行：一起去新疆看西西',
-              mainImage: 'https://tnuiimage.tnkjapp.com/simple/image8.jpg',
+              mainImage: 'https://tnuiimage.tnkjapp.com/shop/card.jpg',
               viewUser: {
                 latestUserAvatar: [{
                     src: 'https://tnuiimage.tnkjapp.com/blogger/avatar_1.jpeg'
@@ -938,11 +938,11 @@
             }
           ],
           adList: [
-            {image: 'https://tnuiimage.tnkjapp.com/simple/image1.jpg'},
-            {image: 'https://tnuiimage.tnkjapp.com/simple/image9.jpg'},
-            {image: 'https://tnuiimage.tnkjapp.com/simple/image3.jpg'},
-            {image: 'https://tnuiimage.tnkjapp.com/simple/image8.jpg'},
-            {image: 'https://tnuiimage.tnkjapp.com/simple/image0.jpg'}
+            {image: 'https://tnuiimage.tnkjapp.com/swiper/ad1.jpg'},
+            {image: 'https://tnuiimage.tnkjapp.com/swiper/ad2.jpg'},
+            {image: 'https://tnuiimage.tnkjapp.com/swiper/ad3.jpg'},
+            {image: 'https://tnuiimage.tnkjapp.com/swiper/ad4.jpg'},
+            {image: 'https://tnuiimage.tnkjapp.com/swiper/ad5.jpg'}
           ],
           adAutoplay: false,
           
@@ -1008,24 +1008,21 @@
       navEdit(e) {
         wx.vibrateLong();
         uni.navigateTo({
-          // url: '/circlePages/edit'
-          url: '/circlePages/circle'
+          url: '/circlePages/edit'
         })
       },
       // 震动跳转
       navCreate(e) {
         wx.vibrateLong();
         uni.navigateTo({
-          // url: '/circlePages/create'
-          url: '/circlePages/circle'
+          url: '/circlePages/create'
         })
       },
       // 震动跳转
       navBuild(e) {
         wx.vibrateLong();
         uni.navigateTo({
-          // url: '/circlePages/build'
-          url: '/circlePages/circle'
+          url: '/circlePages/build'
         })
       },
       // 处理内容，给内容添加对应的标识信息
@@ -1103,14 +1100,12 @@
 </script>
 
 <style lang="scss" scoped>
-	.circle{
-	  max-height: 100vh;
-	}
-  /* 底部安全边距 start*/
+  .template-circle{
+    max-height: 100vh;
+  }
   .tn-tabbar-height {
   	min-height: 120rpx;
   	height: calc(140rpx + env(safe-area-inset-bottom) / 2);
-    height: calc(140rpx + constant(safe-area-inset-bottom));
   }
   /* 自定义导航栏内容 start */
   .custom-nav {
@@ -1173,7 +1168,6 @@
     position: relative;
   }
   .image-pic{
-    border: 1rpx solid #F8F7F8;
     background-size: cover;
     background-repeat:no-repeat;
     // background-attachment:fixed;
@@ -1181,12 +1175,6 @@
     border-radius: 10rpx;
   }
   
-  .tn-color-cat{
-    color: #1D2541;
-  }
-  .tn-bg-cat{
-    background-color: #1D2541;
-  }
   
 /* 文章内容 start*/
   .blogger {
@@ -1202,26 +1190,19 @@
     }
     
     &__desc {
-      line-height: 30rpx;
+      line-height: 55rpx;
       
       &__label {
-        
-        color: #1D2541;
-        background-color: #F3F2F7;
-        border-radius: 10rpx;
-        font-size: 22rpx;
-        
-        padding: 5rpx 15rpx;
-        margin: 5rpx 18rpx 0 0;
+        padding: 0 20rpx;
+        margin: 0rpx 18rpx 0 0;
         
         &--prefix {
-          font-size: 24rpx;
-          color: #1D2541;
+          color: #00FFC8;
           padding-right: 10rpx;
         }
       }
       &__content {
-        line-height: 50rpx;
+        
       }
     }
     
@@ -1245,7 +1226,6 @@
     }
     
     &__main-image {
-      border: 1rpx solid #F8F7F8;
       border-radius: 16rpx;
       
       &--1 {
@@ -1469,11 +1449,7 @@
     &__item {
       display: inline-block;
       line-height: 35rpx;
-      color: #1D2541;
-      background-color: #F3F2F7;
-      border-radius: 10rpx;
-      font-size: 22rpx;
-      padding: 5rpx 15rpx;
+      padding: 5rpx 25rpx;
   
       &--prefix {
         padding-right: 10rpx;

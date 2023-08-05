@@ -2,129 +2,238 @@
   "easycom": {
     "^tn-(.*)": "@/tuniao-ui/components/tn-$1/tn-$1.vue"
   },
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-		  "path": "pages/index",
-		  "style": {
-		    "mp-weixin": {
-		      "disableScroll": true
-		    },
-		    "app-plus": {
-		      "bounce": "none"
-		    },
-		    "mp-alipay": {
-		      "allowsBounceVertical": "NO"
-		    },
-		    "mp-baidu": {
-		      "disableScroll": true
-		    }
-		  }
-		}
-	],
-  "subPackages": [{
-    "root":"homePages",
-    "pages": []
-  }, {
-    "root":"circlePages",
-    "pages": [{
-        "path": "circle",
-        "style": {
-          "navigationBarTitleText": "晒帖子",
-          "enablePullDownRefresh": false
+  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index",
+      "style": {
+        "mp-weixin": {
+          "disableScroll": true
+        },
+        "app-plus": {
+          "bounce": "none"
+        },
+        "mp-alipay": {
+          "allowsBounceVertical": "NO"
+        },
+        "mp-baidu": {
+          "disableScroll": true
         }
-      }]
-  }, {
-    "root":"discoveryPages",
-    "pages": [{
-        "path": "edit",
-        "style": {
-          "navigationBarTitleText": "发闲置",
-          "enablePullDownRefresh": false
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "homePages",
+      "pages": []
+    },
+    {
+      "root": "circlePages",
+      "pages": [
+        {
+          "path": "blogger",
+          "style": {
+            "navigationBarTitleText": "博主_Me",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "blogger_other",
+          "style": {
+            "navigationBarTitleText": "博主_Ta",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "edit",
+          "style": {
+            "navigationBarTitleText": "编辑发布",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "advertise",
+          "style": {
+            "navigationBarTitleText": "广告页",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "news",
+          "style": {
+            "navigationBarTitleText": "资讯详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "king",
+          "style": {
+            "navigationBarTitleText": "名片王者",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "business",
+          "style": {
+            "navigationBarTitleText": "智能名片",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "group",
+          "style": {
+            "navigationBarTitleText": "精选圈子",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "ranking",
+          "style": {
+            "navigationBarTitleText": "积分排行",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "details",
+          "style": {
+            "navigationBarTitleText": "圈子详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "reserve",
+          "style": {
+            "navigationBarTitleText": "预约接龙",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "create",
+          "style": {
+            "navigationBarTitleText": "活动创建",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "build",
+          "style": {
+            "navigationBarTitleText": "打造圈子",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "chat",
+          "style": {
+            "navigationBarTitleText": "一起群聊",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "chatting",
+          "style": {
+            "navigationBarTitleText": "对话聊天",
+            "enablePullDownRefresh": false
+          }
         }
-      },
-      {
-        "path": "order",
-        "style": {
-          "navigationBarTitleText": "订单",
-          "enablePullDownRefresh": false
+      ]
+    },
+    {
+      "root": "discoveryPages",
+      "pages": [
+        {
+          "path": "edit",
+          "style": {
+            "navigationBarTitleText": "发闲置",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "order",
+          "style": {
+            "navigationBarTitleText": "订单",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "partner",
+          "style": {
+            "navigationBarTitleText": "人脉",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "form",
+          "style": {
+            "navigationBarTitleText": "订单明细",
+            "enablePullDownRefresh": false
+          }
         }
-      },
-      {
-        "path": "partner",
-        "style": {
-          "navigationBarTitleText": "人脉",
-          "enablePullDownRefresh": false
+      ]
+    },
+    {
+      "root": "messagePages",
+      "pages": [
+        {
+          "path": "chat",
+          "style": {
+            "navigationBarTitleText": "聊天",
+            "enablePullDownRefresh": false
+          }
         }
-      },
-      {
-        "path": "form",
-        "style": {
-          "navigationBarTitleText": "订单明细",
-          "enablePullDownRefresh": false
+      ]
+    },
+    {
+      "root": "minePages",
+      "pages": [
+        {
+          "path": "set",
+          "style": {
+            "navigationBarTitleText": "设置",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "avatar",
+          "style": {
+            "navigationBarTitleText": "头像",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "integral",
+          "style": {
+            "navigationBarTitleText": "积分",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "about",
+          "style": {
+            "navigationBarTitleText": "关于",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "protocol",
+          "style": {
+            "navigationBarTitleText": "协议",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "withdraw",
+          "style": {
+            "navigationBarTitleText": "提现",
+            "enablePullDownRefresh": false
+          }
         }
-      } 
-    ]
-  }, {
-    "root":"messagePages",
-    "pages": [{
-        "path": "chat",
-        "style": {
-          "navigationBarTitleText": "聊天",
-          "enablePullDownRefresh": false
-        }
-      } 
-    ]
-  }, {
-    "root":"minePages",
-    "pages": [{
-        "path": "set",
-        "style": {
-          "navigationBarTitleText": "设置",
-          "enablePullDownRefresh": false
-        }
-      },
-      {
-        "path": "avatar",
-        "style": {
-          "navigationBarTitleText": "头像",
-          "enablePullDownRefresh": false
-        }
-      },
-      {
-        "path": "integral",
-        "style": {
-          "navigationBarTitleText": "积分",
-          "enablePullDownRefresh": false
-        }
-      },
-      {
-        "path": "about",
-        "style": {
-          "navigationBarTitleText": "关于",
-          "enablePullDownRefresh": false
-        }
-      },
-      {
-        "path": "protocol",
-        "style": {
-          "navigationBarTitleText": "协议",
-          "enablePullDownRefresh": false
-        }
-      },
-      {
-        "path": "withdraw",
-        "style": {
-          "navigationBarTitleText": "提现",
-          "enablePullDownRefresh": false
-        }
-      } 
-    ]
-  }],
-	"globalStyle": {
-	  "navigationStyle": "custom",
-	  "navigationBarTextStyle": "black",
-	  "navigationBarTitleText": "爱魅UI+demo",
-	  "navigationBarBackgroundColor": "#F8F8F8",
-	  "backgroundColor": "#F8F8F8"
-	}
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "爱魅UI+demo",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
 }
