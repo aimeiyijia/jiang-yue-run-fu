@@ -232,7 +232,7 @@
 
       <!-- 更多信息-->
       <view class="about-shadow tn-margin-top-lg tn-padding-top-sm tn-padding-bottom-sm">
-        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30"@click="tn('/minePages/about')">
+        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
           <view class="tn-flex tn-flex-col-center">
             <view
               class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center" style="color: #7C8191;">
@@ -242,7 +242,7 @@
             <view class="tn-color-gray tn-icon-right"></view>
           </view>
         </tn-list-cell>
-        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30" @click="copySource">
+        <!-- <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30" @click="copySource">
           <view class="tn-flex tn-flex-col-center">
             <view
               class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center" style="color: #7C8191;">
@@ -251,14 +251,14 @@
             <view class="tn-margin-left-sm tn-flex-1">开源地址</view>
             <view class="tn-color-gray tn-icon-right"></view>
           </view>
-        </tn-list-cell>
-        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30" @click="tn('/minePages/protocol')">
+        </tn-list-cell> -->
+        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
           <view class="tn-flex tn-flex-col-center">
             <view
               class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center" style="color: #7C8191;">
               <view class="tn-icon-safe-fill"></view>
             </view>
-            <view class="tn-margin-left-sm tn-flex-1">使用协议</view>
+            <view class="tn-margin-left-sm tn-flex-1">使用说明</view>
             <view class="tn-color-gray tn-icon-right"></view>
           </view>
         </tn-list-cell>
@@ -266,7 +266,8 @@
       
       <view class="about-shadow tn-margin-top-lg tn-margin-bottom-lg tn-padding-top-sm tn-padding-bottom-sm">
         <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
-          <button class="tn-flex tn-flex-col-center tn-button--clear-style" open-type="contact">
+        <!--  open-type="contact" -->
+          <button class="tn-flex tn-flex-col-center tn-button--clear-style">
             <view
               class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center" style="color: #7C8191;">
               <view class="tn-icon-wechat-fill"></view>
@@ -278,7 +279,8 @@
           </button>
         </tn-list-cell>
         <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
-          <button class="tn-flex tn-flex-col-center tn-button--clear-style" open-type="feedback">
+        <!-- open-type="feedback" -->
+          <button class="tn-flex tn-flex-col-center tn-button--clear-style">
             <view
               class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center" style="color: #7C8191;">
               <view class="tn-icon-message-fill"></view>
@@ -289,7 +291,7 @@
             </view>
           </button>
         </tn-list-cell>
-        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30" @click="callPhoneNumber" data-number="18266666666">
+        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30" data-number="18266666666">
           <view class="tn-flex tn-flex-col-center">
             <view
               class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center" style="color: #7C8191;">

@@ -137,6 +137,46 @@
       ]
     },
     {
+      "root": "activityPages",
+      "pages": [
+        {
+          "path": "map",
+          "style": {
+            "navigationBarTitleText": "地图打卡",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "topic",
+          "style": {
+            "navigationBarTitleText": "快速答题",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "study",
+          "style": {
+            "navigationBarTitleText": "课程学习",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "project",
+          "style": {
+            "navigationBarTitleText": "开源项目",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "planet",
+          "style": {
+            "navigationBarTitleText": "活动星球",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    },
+    {
       "root": "discoveryPages",
       "pages": [
         {

@@ -12,9 +12,14 @@
     </view>
     <view v-if="tabberPageLoadFlag[2]" :style="{display: currentIndex === 2 ? '' : 'none'}">
       <scroll-view class="custom-tabbar-page" scroll-y enable-back-to-top @scrolltolower="tabbarPageScrollLower">
-        <Discovery ref="discovery"></Discovery>
+        <Activity ref="activity"></Activity>
       </scroll-view>
     </view>
+    <!-- <view v-if="tabberPageLoadFlag[3]" :style="{display: currentIndex === 3 ? '' : 'none'}">
+      <scroll-view class="custom-tabbar-page" scroll-y enable-back-to-top @scrolltolower="tabbarPageScrollLower">
+        <Discovery ref="discovery"></Discovery>
+      </scroll-view>
+    </view> -->
     <view v-if="tabberPageLoadFlag[3]" :style="{display: currentIndex === 3 ? '' : 'none'}">
       <scroll-view class="custom-tabbar-page" scroll-y enable-back-to-top @scrolltolower="tabbarPageScrollLower">
         <Message ref="message"></Message>
@@ -42,6 +47,7 @@
 <script>
   import Home from './home/home.vue'
   import Circle from './circle/circle.vue'
+  import Activity from './activity/activity.vue'
   import Discovery from './discovery/discovery.vue'
   import Message from './message/message.vue'
   import Mine from './mine/mine.vue'
@@ -50,6 +56,7 @@
     components: {
       Home,
       Circle,
+      Activity,
       Discovery,
       Message,
       Mine
@@ -69,14 +76,23 @@
             inactiveIcon: 'topics'
           },
           {
-            title: '发现',
-            activeIcon: 'rocket',
-            inactiveIcon: 'cube',
+            title: '广场',
+            activeIcon: 'menu-circle',
+            inactiveIcon: 'rocket',
             activeIconColor: '#FFFFFF',
             inactiveIconColor: '#FFFFFF',
             iconSize: 50,
             out: true
           },
+          // {
+          //   title: '发现',
+          //   activeIcon: 'rocket',
+          //   inactiveIcon: 'cube',
+          //   activeIconColor: '#FFFFFF',
+          //   inactiveIconColor: '#FFFFFF',
+          //   iconSize: 50,
+          //   out: true
+          // },
           {
             title: '消息',
             activeIcon: 'message-fill',
@@ -116,7 +132,7 @@
       // 瀑布流导航页面滚动到底部
       tabbarPageScrollLower(e) {
         if (this.currentIndex === 2) {
-          this.$refs.discovery.getRandomData && this.$refs.discovery.getRandomData()
+          this.$refs.activity.getRandomData && this.$refs.activity.getRandomData()
         }
       },
       
